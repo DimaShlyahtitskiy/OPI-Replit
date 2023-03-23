@@ -2,37 +2,32 @@
 
 using namespace std;
 
-void func(int arr[],int n) //заголовок функции
+int func(int arr[],int n) //заголовок функции
 {
-  int sum=0;
   int fact=1;
-  for(int i =0;i<n;i++)//нахождение суммы всех не парных элементов с знаком +
+  for(int i =0;i<n;i++)
     {
-      if(arr[i]>0&&(i+1)%2!=0)
+      if(arr[i]<8)//проверка на то что число не больше 8
       {
-        sum+=arr[i];
+        for( ;arr[i]>1;arr[i]--)//вычисление факториала
+          {
+            fact*=arr[i];
+          }
+        break;//вызод из цикла так как нас интересует только первое число что истинно условию
       }
     }
-  for (int i =0;i<n;i++)//замена всех парных элементов
-    {
-      if((i+1)%2==0)
-      {
-        arr[i]=sum;
-      }
-    }
+  return fact;//возвращаем значение
 }
 
 int main() {
+  int fact;
   const int n=15;
   int arr[n];
   for(int i = 0; i< n; i++)//инициализация массива
     {
       cin >>arr[i];
     }
-  func(arr,n);//вызов функции
-  for(int i=0;i<n;i++)//вывод масива
-    {
-      cout << arr[i]<<"\t";
-    }
+  fact=func(arr,n);//вызов функции
+  cout << fact;
     return 0;
 }
